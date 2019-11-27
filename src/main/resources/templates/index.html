@@ -8,6 +8,15 @@
     <link rel="stylesheet" href="css/community.css">
     <script src="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
+<script type="application/javascript">
+    window.onload = function () {
+        var closable = window.localStorage.getItem("closable");
+        if(closable == true){
+            window.close();
+            window.localStorage.removeItem("closable");
+        }
+    }
+</script>
 <body>
 <div th:insert="~{navigation :: nav}"></div>
 <div class="container-fluid main">
@@ -27,8 +36,8 @@
                         <a th:href="@{'/question/'+ ${question.id}}" th:text="${question.title}"></a>
                     </h4>
                     <span th:text="${question.description}"></span><br>
-                    <span class="text-desc"><span th:text="${question.commentCount}"></span>个回复 · <span
-                            th:text="${question.likeCount}"></span>次浏览 · <span
+                    <span class="text-desc"><span th:text="${question.commentCount}"></span> 个回复 · <span
+                            th:text="${question.viewCount}"></span>次浏览 · <span
                             th:text="${#dates.format(question.gmtCreate,'yyyy-MM-dd HH:mm')}"></span></span>
                 </div>
             </div>
